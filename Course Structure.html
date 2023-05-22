@@ -1,0 +1,718 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tentative Course Structures -Python for Finance </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2ebb0a75-e9c9-4d14-bf5d-356c3e653b1b" class="page sans"><header><h1 class="page-title">Tentative Course Structures -Python for Finance </h1></header><div class="page-body"><p id="b1e2cbc8-40b3-4342-a483-f7524db22233" class="">
+</p><p id="6e2e95ec-7fd7-4cc1-9ba9-91cce116b3af" class=""><strong>Overview of Courses with approx. duration for completion</strong></p><p id="48c2916c-f4d6-41b1-bb64-59f0c357d89f" class=""><strong>Python for Data Science Course - 110- 125 hours</strong></p><p id="33dacab7-87f4-43db-8acf-5c397483c3c5" class="">SQL Course - 20 hours</p><p id="5b733f2a-5c64-4a20-8813-fa7f15d71804" class="">Algorithmic Trading Strategies- 8-10 hours </p><p id="902e8275-ce21-43dd-808c-a793168df6f7" class="">Financial Web Application Development → 25 hours</p><p id="60dbf2d8-7930-49a6-aeb5-db37da2a1fc8" class="">Deep Learning &amp;  NLP ( Sentiment Analysis/Text Analytics) - 20 hours</p><p id="5093ea12-2ef8-4719-9d80-32eb86d01a86" class="">Docker, GIT Fundamentals - 10 hours</p><p id="2a806332-3f50-4c19-a5ab-042abfc64171" class=""><strong>Total = 210 hours</strong></p><p id="cfdfe9d4-0408-4a6c-87ca-a0163c0b50cf" class="">
+</p><p id="b2919869-d292-43ce-a213-531f356bcca4" class=""><strong>Course 1- Python for Data Science (Course Structure) - Duration (110- 125 hours)</strong></p><ul id="90cdc21e-401b-4d6f-8dff-104eb4ec17a6" class="toggle"><li><details open=""><summary>MODULE- 1   Python Foundations Module (2 hours)</summary><ul id="8f0b2cd6-d572-40cf-9616-344bb95e879b" class="bulleted-list"><li style="list-style-type:disc">Introduction to Python- What is Python?</li></ul><ul id="6bb0a16a-59cb-4b35-a185-39946dd3a643" class="bulleted-list"><li style="list-style-type:disc">History of Python</li></ul><ul id="70f159bd-2672-4720-bd9c-759e503a5309" class="bulleted-list"><li style="list-style-type:disc">Major Features of Python Programming </li></ul><ul id="e83a7938-8938-42ed-ba4b-9135724d3d8e" class="bulleted-list"><li style="list-style-type:disc">Python Vs other Programming Languages –(High Level Vs Low Level Programming Language)</li></ul><p id="c56a4627-06c0-47eb-9497-bb652d1aa005" class="">Note- (Few more aditional topics to be discussed)</p></details></li></ul><ul id="36e5f087-5ba8-4226-948e-f5c47baa3536" class="toggle"><li><details open=""><summary>MODULE- 2   Introduction to the Jupyter NB and the Anaconda Distribution Setup (2 hours)</summary><ul id="5e00140d-3ce5-4166-b511-7a5a7f6d5176" class="bulleted-list"><li style="list-style-type:disc">Basic Features of Annaconda &amp; Jupyter Notebook</li></ul><ul id="1cab286c-36ca-4582-9ded-7aeee6912010" class="bulleted-list"><li style="list-style-type:disc">Commenting in Jupyter NB → Single Line comment / Multi line comments</li></ul><ul id="395a5bca-de45-4e0f-9860-8ec0f5d29c89" class="bulleted-list"><li style="list-style-type:disc">Shortcuts in Jupyter NB (important)</li></ul><ul id="ead974c5-e676-437a-869c-784b9122d2b6" class="bulleted-list"><li style="list-style-type:disc">Autocomplete support &amp; Helper functions in a Jupyter Notebook</li></ul><ul id="138f316f-5855-4e0c-8892-a76619f13812" class="bulleted-list"><li style="list-style-type:disc">Debugging common errors in a jupyter notebook.</li></ul><ul id="10d838cb-8d79-4a83-b0a6-69afabec139d" class="bulleted-list"><li style="list-style-type:disc">Markdown Vs Code Cells in Jupyter Notebook </li></ul><p id="c1e02458-d9af-491b-a583-7c2b23a5c115" class="">Pointers for discussion →</p><ul id="58a7e177-a7c1-45e0-9076-0dbf571b6ced" class="bulleted-list"><li style="list-style-type:disc">Uses of markdown cells</li></ul><ul id="df43e16a-8d8e-404d-8602-67a6be2e7c74" class="bulleted-list"><li style="list-style-type:disc">That Taking notes / Headings in Markdown cell</li></ul><ul id="7ab47ac1-9295-4201-8462-a168782e0dba" class="bulleted-list"><li style="list-style-type:disc">Adding images to a markdown cell (Drag &amp; drop feature)</li></ul><ul id="2a75c191-3b8a-4997-b9a6-584628fd3849" class="bulleted-list"><li style="list-style-type:disc">Using Html tags within a markdown cell.</li></ul><p id="8b0a2410-c77b-4709-bf4d-9a7a6bcbbfc3" class="">Jupyter Magic Commands</p></details></li></ul><ul id="1833cf94-7019-4bbf-a19f-293dfd8459c2" class="toggle"><li><details open=""><summary>MODULE- 3   Introduction to Modular Programming  (2-4 hours)</summary><p id="8213a20d-ab3a-4300-a387-d9e3e9c20acf" class="">Basic structure &amp; hierarchy of the Python Programming language</p><ul id="4695458a-f4de-4891-9235-0334612cf9fc" class="bulleted-list"><li style="list-style-type:disc">Difference Between Python Modules, Packages, Libraries, and Frameworks</li></ul><ul id="9da7a7e5-887f-4d23-9b14-989e1c7a7d7c" class="bulleted-list"><li style="list-style-type:disc">Methods &amp; Modules, and function in python and how are they structured</li></ul><ul id="aa816920-6609-44ef-8731-074715f036b3" class="bulleted-list"><li style="list-style-type:disc">Python Libraries/Package &amp; Objects Hierarchy</li></ul><ul id="fd802833-0ecc-47e8-9619-a53f9cbab4db" class="bulleted-list"><li style="list-style-type:disc">Installing Libraries into Jupyter Notebook,</li></ul><ul id="b4025ba1-b6e7-42af-a682-107ea7841de4" class="bulleted-list"><li style="list-style-type:disc">reading the official PyPI documentation</li></ul><ul id="1774611a-8131-4244-b921-985f5f495b56" class="bulleted-list"><li style="list-style-type:disc">!pip Vs conda Vs jupyter commands to install libraries, how and where to use them</li></ul><ul id="27a60e98-5766-4df9-bc29-9d64732553c4" class="bulleted-list"><li style="list-style-type:disc">Using the Command Line Interface</li></ul><ul id="4abffe08-b3f5-42af-a23b-226243bb4c0a" class="bulleted-list"><li style="list-style-type:disc">How to check version of libraries, Obtaining the list of libraries installed</li></ul><ul id="bd67c970-b5b8-4292-b958-ea34c7576a97" class="bulleted-list"><li style="list-style-type:disc">Reading the Docstring of a function</li></ul><ul id="65f3483f-24d2-482b-a8f9-5c621453f187" class="bulleted-list"><li style="list-style-type:disc">Helper functions and Auto-complete </li></ul></details></li></ul><ul id="cb50e017-3c61-4b02-b9bb-cfdf00f5b7f8" class="toggle"><li><details open=""><summary>MODULE- 4   Variables and Data Types in Python ( 4 hours)</summary><p id="515f3ad9-eee5-46e8-a368-83ef5568a588" class="">→ Basic and inbuilt data types.
+→ The array data tуре and its uses</p><p id="669ae6a6-6e21-4854-8f32-4cd70dbfac2d" class="">(Module sections to be Added)</p></details></li></ul><ul id="c38028e1-a987-4b8a-a595-faa48ce35963" class="toggle"><li><details open=""><summary>MODULE- 5   Data Structures &amp; Containers in Python (4-6 hours)</summary><p id="b5d44bec-0840-4463-aa99-d7f9db84a762" class="">Properties &amp; Comparison of different Data Structures</p><p id="9ad4be58-c10b-4318-8fb7-e77c57760ce3" class="">(Ordering, Mutability)</p><p id="2c2effe1-1825-461f-9546-d6c746e20a83" class="">Sequence data types in Python (stays, Lists, Arrays, tuples, range objects) Looping through sequence data types.</p><p id="4cbbd3b3-e7f7-4411-a02b-f499162ed19e" class=""> Looping through a List object. Looping through on array</p><p id="177c7df8-3399-4aad-8e24-9a3584ae994e" class="">Tuples &amp; Packing I unpacking tuples. Creating a Zip function and implementation of it.</p><p id="2b582ad4-30b7-4a45-a427-a739d30b66b4" class="">Packing unpacking. list, tuples, dictionaries, range</p><p id="e63e2357-093f-47ff-8326-a4307881e690" class="">Methods attached with different Data Structures.</p><p id="1aff8b46-0c3b-4089-9d67-1e466440e737" class="">Indexing, slicing, concatenation, multiplication, etc ( methods)</p><p id="946a0847-5b0a-40db-b278-294e7337dcc4" class="">Comprehension Operations on Data Structures</p><p id="37fbe538-cbb1-4023-bb61-9272428c4fe1" class="">An Introduction to advanced Data Structures</p></details></li></ul><ul id="4c4a3235-26ec-4b6d-ad91-7d0ca8e8e963" class="toggle"><li><details open=""><summary>MODULE- 6   Operators in Python ( 2-4 hours)</summary><ul id="9b5fe0dc-1938-4dd0-b75e-50bed9302c9c" class="bulleted-list"><li style="list-style-type:disc">Bitwise, Arithmetic, Logical, Assignment etc</li></ul><ul id="1109fe6b-11bb-4ee6-8a33-6f89941e4085" class="bulleted-list"><li style="list-style-type:disc">Operaters topics</li></ul><ul id="d14e43b6-ed1c-4cff-9529-e122fbed780e" class="bulleted-list"><li style="list-style-type:disc">What are operators &amp; operands ?</li></ul><ul id="5a5e3805-59c4-4fa9-ab48-2314f52a04ed" class="bulleted-list"><li style="list-style-type:disc"> Constructing expressions using with operators.</li></ul><ul id="b56d1f58-fa3c-4937-89cc-9b2edec36627" class="bulleted-list"><li style="list-style-type:disc"> Type of operators and uses of each (with examples) + Precedence Hierarchy of operators.</li></ul><p id="461094bf-c73f-4a67-989c-4f9e3ec5be09" class=""> Note- (Module sections to be added)</p><p id="23f3f995-671f-41b0-9076-847b417eae8b" class="">
+</p></details></li></ul><ul id="55ba4fc1-dd52-4d6b-a622-4fe298f39ed1" class="toggle"><li><details open=""><summary>MODULE- 7   Functions in Python (2-4 hours)</summary><ul id="9c644e37-1dbb-4cde-ab13-ba7712191821" class="bulleted-list"><li style="list-style-type:disc">User Defined Functions Vs In-built functions</li></ul><ul id="d11e1d3e-bfa9-4a23-a299-67f646757b83" class="bulleted-list"><li style="list-style-type:disc">Modular Programming -&gt; The .ipynb Vs .py extensions</li></ul><ul id="f29c84e2-856e-4e6e-9031-175b40d84e64" class="bulleted-list"><li style="list-style-type:disc">Calling a Function within the same script or from a different script </li></ul><ul id="2aed2170-b2d1-44eb-b1d8-054777682199" class="bulleted-list"><li style="list-style-type:disc">Modular Function</li></ul><ul id="48546a1e-ddaf-4a7e-a92c-558790f77f67" class="bulleted-list"><li style="list-style-type:disc">Lambda Function Uses</li></ul><ul id="69b8ce23-70ab-4adc-b2a4-ae73fa39b3de" class="bulleted-list"><li style="list-style-type:disc">Hands on Practice</li></ul><p id="4cfbbef1-7165-427b-b49a-6c8fdcdb2270" class="">Note- (This is a major Module, many more sections to be added)</p><p id="11859fb9-55a9-4b89-8f93-5c83b991111b" class="">
+</p><p id="c5b2f35d-52bd-4d84-b330-2d98abcc7073" class="">
+</p></details></li></ul><ul id="9db7ced6-d66e-400f-bf73-04a66acae553" class="toggle"><li><details open=""><summary>MODULE- 8   Conditional  &amp;  Control Statements (Loops)  (4 hours)</summary><ul id="478a50fe-1e54-431a-a327-ff410ff4006e" class="bulleted-list"><li style="list-style-type:disc">(If-Else)- Indentations used in Loops in Python</li></ul><ul id="f8f76f71-fb82-4e76-8e6f-934421f8aa12" class="bulleted-list"><li style="list-style-type:disc">Breaking, Passing and continuing a loop.</li></ul><ul id="e12ef456-a9f0-4280-a74a-ec0e4fa785ed" class="bulleted-list"><li style="list-style-type:disc">Range Functions</li></ul><ul id="663147ae-d467-466f-9a12-456f0b4c9910" class="bulleted-list"><li style="list-style-type:disc">Hands on usage &amp; Tasks</li></ul><p id="42c55390-8614-4b0c-a126-aa67542b5e02" class="">Note- (Few more sections to be added)</p><p id="87d0a803-750c-49c8-be27-6636d59a5c33" class="">
+</p><p id="ef346a2c-0946-46c0-87ed-82a90654ca26" class="">
+</p></details></li></ul><ul id="a3765ca0-c494-4243-90f7-7fb440b753a1" class="toggle"><li><details open=""><summary>MODULE- 9   Debugging &amp; Exception (3 hours) </summary><ul id="4b99b15e-ef6f-4f0a-bd47-9c8f4fd8747c" class="bulleted-list"><li style="list-style-type:disc">Handling Exception Errors</li></ul><ul id="6af02c3d-eee9-4934-bc05-f07737b60e0f" class="bulleted-list"><li style="list-style-type:disc">Using Try &amp; Except Blocks</li></ul><ul id="89c470b3-22ad-4615-85c1-63c42eee1775" class="bulleted-list"><li style="list-style-type:disc">Hands on examples &amp; Implementations</li></ul><p id="f1c544f6-17c9-4591-aca4-9ddffad9c046" class="">
+</p></details></li></ul><ul id="316b2456-b614-4af1-869f-622e642aef07" class="toggle"><li><details open=""><summary>MODULE-10   Object Object Oriented Programming (OOPS) in Python  (6 hours)</summary><ul id="cd162123-3bf8-4631-a5ca-f535b720d1b4" class="bulleted-list"><li style="list-style-type:disc">Objects - Class &amp; Methods in Python</li></ul><ul id="6f031cce-d10f-46e6-af21-a9dc12edddd1" class="bulleted-list"><li style="list-style-type:disc"> OOPS properties (Inheritance, Polymorphism)</li></ul><ul id="8a4138c4-4fcd-4492-ad77-73e303749ebe" class="bulleted-list"><li style="list-style-type:disc">Data Classes and Vector classes.</li></ul><ul id="f0ed3126-c3ae-44fd-9d0f-985cf845b1be" class="bulleted-list"><li style="list-style-type:disc">Using Data Classes to store Financial Data Bases</li></ul><ul id="37543ef2-29dd-4889-ba88-e64d3e4a2bce" class="bulleted-list"><li style="list-style-type:disc">Using and Parsing Data Class Objects</li></ul><ul id="5311d56b-7142-4774-b84f-b71b66f89e21" class="bulleted-list"><li style="list-style-type:disc">Hands on Examples &amp; Practice</li></ul><p id="b3e98474-3f98-40b6-952e-d88700b47a71" class="">
+</p></details></li></ul><ul id="de6d87b9-15f1-4b43-81df-09af03d12e18" class="toggle"><li><details open=""><summary>MODULE-11   NUMPY-1 ( 2 hours)</summary><ul id="00067b97-a3e5-4bb7-93f4-3dfe293cbbdd" class="bulleted-list"><li style="list-style-type:disc">Matrices &amp; Linear Algebra Refresher Primer</li></ul><ul id="309c58b1-7d4b-42be-8ce3-c67678b0f644" class="bulleted-list"><li style="list-style-type:disc">Numpy I – Representing matrices in Numpy</li></ul><ul id="e50e2855-87f5-45e7-b41b-2aab878e1b94" class="bulleted-list"><li style="list-style-type:disc">Basic Matrix operations using Numpy.</li></ul><p id="ebb2b69b-9527-4dac-9c28-35c422f905e8" class="">
+</p></details></li></ul><ul id="c412f9de-8ff2-406b-92a3-7e94b74864a5" class="toggle"><li><details open=""><summary>MODULE-12   Data Analysis with Pandas (8 hours)</summary><ul id="0fee192d-6af9-45f9-a427-ac4ba51ff5e2" class="bulleted-list"><li style="list-style-type:disc">Pandas Basics</li></ul><ul id="631178b2-1389-41ee-b7ea-0daeec0d5ba8" class="bulleted-list"><li style="list-style-type:disc">Importing/reading Different File types into a Data Frame.</li></ul><ul id="9a60545a-df0c-48f7-8383-3c836f1b48be" class="bulleted-list"><li style="list-style-type:disc">Exploratory Data Analysis (EDA) in Pandas</li></ul><ul id="79583c2a-886c-4fed-bd43-76ba84acfa91" class="bulleted-list"><li style="list-style-type:disc">Basic descriptive Statistics using Python </li></ul><ul id="a767536a-c473-4f59-833b-36c5459141f7" class="bulleted-list"><li style="list-style-type:disc">Basic Missing Value Imputation in Python  (Important Topic)</li></ul><ul id="bb5a5884-7d4e-4273-aaef-97a60a65c1b6" class="bulleted-list"><li style="list-style-type:disc">Advanced Missing Value Imputation- (To be done later within the Machine Learning Module)</li></ul></details></li></ul><ul id="a2853764-0b1e-4aff-8efe-40e0cceb57c3" class="toggle"><li><details open=""><summary>MODULE-13   Data Visualization (Data Viz Module) (4 hours)</summary><p id="b95e37f0-0eab-460e-ad7c-4f1c6222639e" class="">Libraries covered- Data Viz with Matplotlib,   (plotly, seaborn) - Optional</p><p id="b7f115d3-c642-4471-b0d3-88af01660cb9" class="">Data Visualization Topics</p><ul id="edf3a3cb-a658-4979-af06-903a76aa1cd6" class="bulleted-list"><li style="list-style-type:disc">Static 2D Plots</li></ul><ul id="8c5e9728-285e-4f4e-8684-86fc210a9fb1" class="bulleted-list"><li style="list-style-type:disc">Static 3D plots.</li></ul><ul id="54b13ad1-fbe0-447b-a8d2-a902d28fb913" class="bulleted-list"><li style="list-style-type:disc">Special Financial Plots (Candlestick Plots)</li></ul><ul id="f5849142-986f-4106-8873-714d1fe8ba4d" class="bulleted-list"><li style="list-style-type:disc">Interactive plots.</li></ul><ul id="848a7b40-a964-416c-84d3-810996ac99e3" class="bulleted-list"><li style="list-style-type:disc"> Animated plots</li></ul><p id="e4a35f8d-75af-442f-b0d5-bd0b96ebbc05" class="">+ Live, Real-time plots/ Dashboard -(Optional)</p><p id="c1c1fcc7-edff-4588-aa36-a9a714da1dfa" class="">
+</p></details></li></ul><ul id="cce7bfb5-4445-49ff-b191-de9f8ad77196" class="toggle"><li><details open=""><summary>MODULE-14   Pattern Matching with Regular Expressions (Regex) (4 hours)</summary><ul id="2f6e54ed-49eb-462d-b6af-3bf989438c5a" class="bulleted-list"><li style="list-style-type:disc">A general discussion on the use of Regular Expressions (Regex)</li></ul><ul id="4866b24f-98da-445f-98a8-aabab0bb0652" class="bulleted-list"><li style="list-style-type:disc">Regex uses for Filtering Data frames</li></ul><ul id="91ebe275-848e-410e-b87a-0ddc67b89a15" class="bulleted-list"><li style="list-style-type:disc">Importance/ Implementation of Regex for Data Analysis, Web scrapping and NLP (Natural Language Processing)j- discussion</li></ul><p id="8f3febc2-0301-4b98-9fcf-47df2a61ce0a" class="">
+</p></details></li></ul><ul id="599a3504-affe-4fd0-8f55-096815df9227" class="toggle"><li><details open=""><summary>MODULE-15   Feature Engineering Module ( 6 hours)</summary><ul id="8842e813-bb50-4211-bd13-24be9faf72f3" class="bulleted-list"><li style="list-style-type:disc">One-Hot Encoding</li></ul><ul id="ac1b59d7-e2b8-4659-a2b7-d8c074f62f74" class="bulleted-list"><li style="list-style-type:disc">Using PCA for feature reduction</li></ul><ul id="e288bbca-0ba0-4ce8-a3f6-e6cd2eb5dfdf" class="bulleted-list"><li style="list-style-type:disc">Dealing with Categorical Features</li></ul><p id="ed0222d6-c231-4642-ac66-605eff9dbe85" class="">Note- (This is a very Important Module, to be designed in-depth.)</p><p id="d1b250a7-376e-42c8-b604-a03d22d97b62" class="">
+</p><p id="74c75c90-b6b6-4190-8e64-96c6391d015e" class="">
+</p></details></li></ul><ul id="30d717a6-1428-43ea-bdda-f653a9373b49" class="toggle"><li><details open=""><summary>MODULE-16   Financial Time series Forecasting  (Time - 10 hours)</summary><ul id="02c68106-262c-4781-ac19-c5a720a48abe" class="bulleted-list"><li style="list-style-type:disc">Time Series Theory Refresher</li></ul><ul id="0cee185d-ab59-4576-a660-53b55c5ff171" class="bulleted-list"><li style="list-style-type:disc">The Date-Time Module</li></ul><ul id="e3df53f5-cd73-4512-83a4-0c2c34068b69" class="bulleted-list"><li style="list-style-type:disc">Plotting / Analysing &amp; forecasting Time Series</li></ul><ul id="90376705-da31-47e7-8161-1cbbb5914a6b" class="bulleted-list"><li style="list-style-type:disc">Financial  Time Series Simulations in Python</li></ul><ul id="d7a28182-8429-4fcd-89ca-16a29df9468d" class="bulleted-list"><li style="list-style-type:disc">Time Series Analysis using pre-trained Python  Libraries</li></ul><ul id="9f695500-f7e5-4cca-9a46-ccb37e38ff88" class="bulleted-list"><li style="list-style-type:disc">Hybrid Time Series Models- (To be done after completing the Machine Learning Module)</li></ul><p id="3fb12f74-5a64-48e0-acd1-cbb00837eb4e" class="">
+</p><p id="d8354bdc-b70b-4715-8676-86ee1ecc2904" class="">
+</p></details></li></ul><ul id="87da3c84-3f99-44a6-bacf-2f5780b3649d" class="toggle"><li><details open=""><summary>MODULE-17   NUMPY-Part 2    (2 hours)</summary><ul id="dd87bb5b-9b2e-469d-bed2-b15d8e39cb68" class="bulleted-list"><li style="list-style-type:disc">Numpy for Machine Learning</li></ul><ul id="fae5f00c-0bae-483e-83d7-b17ba26ab222" class="bulleted-list"><li style="list-style-type:disc">Basic Numpy Operations Refresher</li></ul><ul id="c5b67a93-83c0-4269-bb8a-c12ca88267ad" class="bulleted-list"><li style="list-style-type:disc">Advanced Numpy Concepts- Vectorization in Numpy</li></ul><p id="7a6be56c-5788-4e3d-9f36-81316645485a" class="">Action Item for student -&gt; Please revise the Numpy Part 1 and finish the Numpy assignments</p><p id="0defce5c-0e67-44bb-91c0-14b59d011c32" class="">
+</p></details></li></ul><ul id="78893e1a-6c8f-432d-87bb-2b6206e22785" class="toggle"><li><details open=""><summary>MODULE- 18  Basic Machine Learning Models Implementation (10 hours) </summary><ul id="dfde4bbc-e06c-473a-8364-7d2e37aae085" class="bulleted-list"><li style="list-style-type:disc">Supervised, Unsupervised Models</li></ul><ul id="00c60d85-238f-406c-ba60-a7b951da78f3" class="bulleted-list"><li style="list-style-type:disc">Regression &amp; Classification Models</li></ul><ul id="c9e1a652-1700-486e-a9a1-8647e0a45760" class="bulleted-list"><li style="list-style-type:disc">Unsuvervised Models</li></ul><ul id="5a829b00-b470-48fa-bdbf-ed14cb3d1ff4" class="bulleted-list"><li style="list-style-type:disc">Hands on Practice</li></ul><p id="efaddfb4-9cb8-498e-a03e-c651aa719142" class="">( This is a Major Module, many more sections to be added, time to completion might increase)</p><p id="30eeb252-de9f-4e46-aa45-ee409cd6f691" class="">
+</p></details></li></ul><ul id="37fb6f4a-a814-4584-8690-657d1f8a818f" class="toggle"><li><details open=""><summary>MODULE-19   Hybrid Time Series Models (2 hours) </summary><p id="90e300a1-9a3a-44b7-9e59-f3e578bdbe7d" class="">Hybrid Time Series Analysis using pre-trained Models</p><p id="0ba3e2f8-ed3e-43cd-a6cd-b3830c4aee07" class="">
+</p></details></li></ul><ul id="c4c17b98-cb0b-49c5-a5aa-999b51e0623f" class="toggle"><li><details open=""><summary>MODULE-20   Capstone Project-1 (6-8 hours)</summary><p id="47770eaa-5b37-4e72-a381-f2358d4f195d" class="">Creating an OOPs based Linear Regresion Data Analysis Software to Analyse any Financial Data</p><p id="523867bc-0a36-4bbc-a699-7feeb98c953a" class="">
+</p></details></li></ul><ul id="fc132b0c-8d7e-4e86-a2d2-cc86c700bf23" class="toggle"><li><details open=""><summary>MODULE-21 - Various Sources of Financial data  (6 hours)</summary><ul id="fbfab0a4-b5c0-4561-aff1-aa2af97ad0d4" class="bulleted-list"><li style="list-style-type:disc">Retrieving Financial Data from  the Web </li></ul><ul id="68e9e1e1-2684-461c-a56a-95d35814ff55" class="bulleted-list"><li style="list-style-type:disc">Using in-built Python Libraries</li></ul><ul id="b33a55ea-3346-4254-9ace-e43c83ea2821" class="bulleted-list"><li style="list-style-type:disc">Using API &amp; Websockets to retrieve Financial Data</li></ul></details></li></ul><ul id="ba27cd9a-cd03-4a27-aec5-6cf77f16cc3f" class="toggle"><li><details open=""><summary>MODULE-22    Web scrapping Financial Data &amp; Real-time Dashboarding (Duration:10-15 hours)</summary><ul id="a3e9a9c9-f5e7-44a1-97ec-42611f3b2f7b" class="bulleted-list"><li style="list-style-type:disc">Introduction to webscrapping- What is webscrapping ?</li></ul><ul id="9c065d32-fefd-45b5-aee1-17dedb5ade53" class="bulleted-list"><li style="list-style-type:disc">Webscrapping Alternatives- When not to webscrap</li></ul><ul id="6fd50fb4-91b5-4248-b3c6-cbbf7856bbdd" class="bulleted-list"><li style="list-style-type:disc">Webscrapping Safety Measures - Legal Vs Illegal Webscrapping / Legality of Webscrapping</li></ul><ul id="9b6ff2fa-0e08-4c78-a1cb-62b90324fa20" class="bulleted-list"><li style="list-style-type:disc">Legal checklist before webscrapping</li></ul><ul id="18ef71dc-1aeb-448b-bcf8-b5f6f16b5570" class="bulleted-list"><li style="list-style-type:disc">Example Web Sites to safely practice webscrapping</li></ul><p id="5d8f7c85-c5cc-40c7-9f23-b710b6fdef6f" class="">
+</p><p id="d51d853a-ea0c-4ad5-91b0-dd65043546f4" class="">Webscrapping Fundamentals-&gt;</p><ul id="f6c9171d-0200-4009-90f8-7576338d50bf" class="bulleted-list"><li style="list-style-type:disc">Networking Fundamentals for Webscrapping (GET Vs POST)</li></ul><ul id="25a32c8b-ddd0-40ab-884c-9f1aed94cc8a" class="bulleted-list"><li style="list-style-type:disc">Understanding the basic structure &amp; layout of a website/Webpage</li></ul><ul id="6e65b22e-b3f5-488b-b1e0-36fd40fe1a3d" class="bulleted-list"><li style="list-style-type:disc">Basic idea of the web dev workflow &amp; tools (Basic  Html/ CSS/ JS syntax structures understanding)</li></ul><ul id="6b6be545-92c1-47f7-a727-2629a5468b4e" class="bulleted-list"><li style="list-style-type:disc">Parsing JSon data obtained from web scrapping</li></ul><ul id="2d03f2b8-7ccc-4516-a827-e71b2d656fdd" class="bulleted-list"><li style="list-style-type:disc">Using Proxy Servers to mask IP’s when web scrapping, </li></ul><ul id="99667c5d-1d1d-4368-9da4-209882e39fc9" class="bulleted-list"><li style="list-style-type:disc">Rotating Proxy servers module- (Automated Web Scrapping with Proxy servers)</li></ul><ul id="2467ddd7-66de-45ca-9b7c-2c83ae696720" class="bulleted-list"><li style="list-style-type:disc">Web scrapping data from Public Stock Exchanges</li></ul><p id="3119edc0-3bfd-4a76-aea5-167657d6100a" class="">
+</p><p id="9cedd4b3-3dfc-42e2-bd48-9ad48c79b27e" class="">
+</p><p id="65ee2b3a-32ec-4398-92d2-d133b9bafa0d" class="">
+</p><p id="4beed3bc-673c-4cd0-ade9-7906645c8f39" class="">
+</p></details></li></ul><ul id="13c94b19-4492-4cca-971f-867a40760704" class="toggle"><li><details open=""><summary>MODULE-23    Capstone Project-2  (Optional)  (Duration- 6-8 hours aprox.)</summary><p id="2083de5e-df96-440c-b274-9664ef4bb51c" class="">Create a Financial Dashboard as a Web Application to Track &amp; Monitor Real-Time Webscrapped Financial Data - (Optional, Subject to Time Availability)</p><p id="2b719860-7d09-4e30-9337-fbbbb4e0ccb0" class="">
+</p></details></li></ul><p id="db490096-ebb4-4b05-a0a6-a7009f8a6992" class="">
+</p><hr id="d7a12629-bfbf-4ba7-b60c-22ba2c7a0621"/><hr id="b3102631-770f-43cb-b851-144d82741a49"/><hr id="8b2cdc48-8da5-4700-b2d2-edc448c2340c"/><hr id="028981f8-2525-41b8-9b09-46060e8f9c66"/><hr id="2a2f842e-3852-4841-8287-7c6100e71943"/><hr id="71d63c3d-881a-4ddc-ab31-61633adcb8bb"/><hr id="37b66f2e-ad62-4f4d-ad2a-d3a9a51a4d2f"/><p id="4339b164-4e87-4ff0-8bf9-76da10cb3d9a" class="">
+</p><p id="40dee4e0-a0ea-4133-84f3-b5d12e6437d5" class="">Note - The below Modules/ Courses are Optional. They’re not part of the Course Curriculum above, and can be opted if required and time permits.</p><p id="1edc9636-fdc6-4eb7-af8b-b1c7b2a6e861" class="">
+</p><ul id="0f8ecce4-2ba3-4bc7-b4f1-1263c2091d6a" class="toggle"><li><details open=""><summary>Course- Structured Query Language (SQL) Duration- (15-20 Hours)</summary><p id="63ecd2dd-51e6-4b23-8e4a-9e18bac313c0" class="">Basic SQL Syntax:</p><ul id="4b24af5b-d902-41fb-b845-1c68257de09b" class="bulleted-list"><li style="list-style-type:disc">SQL keywords (SELECT, FROM, WHERE, etc.)</li></ul><ul id="778d8144-0190-4ffe-ae58-73d8c98aac84" class="bulleted-list"><li style="list-style-type:disc">Writing and executing SQL queries</li></ul><ul id="ada14cea-1a54-4df2-a91d-cfd4e4dea03e" class="bulleted-list"><li style="list-style-type:disc">Understanding tables and databases</li></ul><p id="5a58da3b-78e4-4ade-a2e5-128b6d76e54e" class="">
+</p><p id="4b0aa6d7-cce8-4819-97f9-ed2fb34d5833" class="">Retrieving Data:</p><ul id="b5f723aa-8e80-4e16-89d7-453d3ffcd3b0" class="bulleted-list"><li style="list-style-type:disc">SELECT statement and its various clauses (DISTINCT, ORDER BY, LIMIT)</li></ul><ul id="754e5a8f-c4d7-434a-868e-eea9c72ba946" class="bulleted-list"><li style="list-style-type:disc">Filtering data using WHERE clause</li></ul><ul id="8aeee446-ddf8-4365-a35f-e81a642d1a07" class="bulleted-list"><li style="list-style-type:disc">Sorting data using ORDER BY clause</li></ul><ul id="ace1a24d-9d69-483e-aa4d-88e1ea955fa5" class="bulleted-list"><li style="list-style-type:disc">Limiting the number of results using LIMIT clause</li></ul><ul id="e6fcf25a-c5fe-41a0-90bb-5199c0e01412" class="bulleted-list"><li style="list-style-type:disc">Aggregating data using GROUP BY clause</li></ul><p id="c54dc103-7d4d-48f3-849c-62cfff6040cf" class="">
+</p><p id="0c390384-8734-4d7b-8053-e9a070d25c6c" class="">Data Filtering and Manipulation:</p><ul id="57b4dca8-1a72-486a-b242-41556e5fdf91" class="bulleted-list"><li style="list-style-type:disc">Using logical operators (AND, OR, NOT) to combine conditions</li></ul><ul id="256644ad-37ce-4267-8308-e0e081f4ee76" class="bulleted-list"><li style="list-style-type:disc">Working with comparison operators (=, &lt;, &gt;, IN, BETWEEN)</li></ul><ul id="acf301c8-26d5-4cee-b9d2-91ce8731408f" class="bulleted-list"><li style="list-style-type:disc">Using wildcards (LIKE) for pattern matching</li></ul><ul id="e3cb1b9a-18d5-44b7-8ede-48c3de35f8ab" class="bulleted-list"><li style="list-style-type:disc">Performing calculations and transformations using arithmetic operators and SQL functions</li></ul><p id="74ba0b16-baec-4835-882b-4ad128955f43" class="">
+</p><p id="e6ed3eeb-a209-4a8c-940f-275b24099dba" class="">Joins and Relationships:</p><ul id="031e366c-bc73-42a6-b928-307be2d88605" class="bulleted-list"><li style="list-style-type:disc">Understanding different types of joins (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN)</li></ul><ul id="1d4e0c63-a796-49bd-ac0a-391cdd6f1e50" class="bulleted-list"><li style="list-style-type:disc">Joining tables based on relationships (primary key and foreign key)</li></ul><ul id="8455d23e-aaac-4d12-8d49-f35805b1ba22" class="bulleted-list"><li style="list-style-type:disc">Handling NULL values in joins
+</li></ul><p id="368d0b38-965c-409c-bb85-baf6ccce587d" class="">Subqueries and Derived Tables:</p><ul id="5115f8b7-5d7d-4d10-9759-5b463f05fcb4" class="bulleted-list"><li style="list-style-type:disc">Writing subqueries to create more complex queries</li></ul><ul id="5e963341-14e7-4dfa-8aa1-446b700f76f0" class="bulleted-list"><li style="list-style-type:disc">Using subqueries in SELECT, WHERE, and FROM clauses</li></ul><ul id="046a909a-e6e1-4c7f-993d-dd3ddf21f169" class="bulleted-list"><li style="list-style-type:disc">Creating derived tables and using them in queries
+</li></ul><p id="881be583-cfe7-4a9d-8bac-85fb761ebe89" class="">Data Aggregation and Grouping:</p><ul id="98f5e46d-421c-48a6-96a8-ecccce34b6fc" class="bulleted-list"><li style="list-style-type:disc">Aggregating data using functions (SUM, AVG, MIN, MAX, COUNT)</li></ul><ul id="102b74eb-d5ad-48ed-b5f1-7d318983dca2" class="bulleted-list"><li style="list-style-type:disc">Grouping data using GROUP BY clause</li></ul><ul id="1fda50aa-64ea-4ebe-aa1e-71bb03f6ea7f" class="bulleted-list"><li style="list-style-type:disc">Filtering grouped data using HAVING clause
+</li></ul><p id="7fbc5aab-7130-4eca-85f9-5d9a3252726c" class="">Data Modification:</p><ul id="ad0b9bbc-4345-47be-bb74-41f9c025c3d3" class="bulleted-list"><li style="list-style-type:disc">Inserting data into tables using INSERT statement</li></ul><ul id="d5666d9c-b2f5-45c0-9664-7cf41ded8f87" class="bulleted-list"><li style="list-style-type:disc">Updating existing data using UPDATE statement</li></ul><ul id="db4a0e73-a2e4-4d8d-bd6c-3a814cc74f41" class="bulleted-list"><li style="list-style-type:disc">Deleting data using DELETE statement
+</li></ul><p id="93875409-8c4a-4e59-bacc-418de9bcce6a" class="">Data Analysis Functions:</p><ul id="1334b1f6-05bf-478f-addd-deb291bbfbe6" class="bulleted-list"><li style="list-style-type:disc">Using built-in SQL functions for data analysis (DATE, STRING, MATH functions)\</li></ul><ul id="d86e913f-7850-4f8f-ab80-d9771cbae2c6" class="bulleted-list"><li style="list-style-type:disc">Working with aggregate functions (COUNT, SUM, AVG, etc.)</li></ul><ul id="84e6b22a-ee72-4f87-b8eb-484bece57859" class="bulleted-list"><li style="list-style-type:disc">Performing calculations on date and time data
+</li></ul><p id="3b61b6c4-c3fd-4e18-9dec-c4a9472ddc3d" class="">Advanced Topics:</p><ul id="64fd3d38-d0bd-425b-80c7-88291b915325" class="bulleted-list"><li style="list-style-type:disc">Working with multiple tables and complex joins</li></ul><ul id="7a50830f-7e8f-4826-9a8e-2248a68cce27" class="bulleted-list"><li style="list-style-type:disc">Indexing and optimizing queries for performance</li></ul><ul id="8ed07c26-e094-4035-a0e9-b34e1473388f" class="bulleted-list"><li style="list-style-type:disc">Understanding database normalization and data modeling concepts</li></ul><ul id="647dc054-c4c4-4c76-9c2c-65214e35688e" class="bulleted-list"><li style="list-style-type:disc">Time Series Analysis using SQL</li></ul><p id="8dd8e758-990b-4522-8576-a57fcfa7d8f0" class="">
+</p></details></li></ul><p id="6c699ded-bb60-43e6-8b7f-a577ea6cb117" class="">
+</p><ul id="aac070bf-a047-401e-b232-cd3ca3abb4ef" class="toggle"><li><details open=""><summary>Algorithmic Trading Strategies (8-10 Hours)</summary><ul id="02e6d32c-2db6-4668-a4ac-a079df4e1512" class="bulleted-list"><li style="list-style-type:disc">Implementing Automated Trading Bots</li></ul><ul id="3fbef8b2-0db0-4d95-9360-0a0ec167e17e" class="bulleted-list"><li style="list-style-type:disc">Trading Strategy Monitoring using Pattern Detection</li></ul><ul id="b5e4aef3-30c1-4980-b3e6-7d0e375f6a1b" class="bulleted-list"><li style="list-style-type:disc">Price- Action Strategies &amp; Technical Analysis</li></ul><ul id="1d9612ad-4023-4e5d-8852-a7b2179dfaff" class="bulleted-list"><li style="list-style-type:disc">Back testing trading strategies</li></ul><p id="1b134555-1c18-4b8f-949e-032681daf028" class="">
+</p></details></li></ul><p id="1d7676fc-8f30-4167-80c8-26a02390deda" class="">
+</p><ul id="0341cf7d-96f4-493f-8db1-63cf6495de69" class="toggle"><li><details open=""><summary>Deep Learning &amp; NLP (Natural Language Processing)   (Optional Module)- Duration- 20 Hours</summary><ul id="525a1dd5-ddd4-4a25-9cea-95fd6d89e090" class="bulleted-list"><li style="list-style-type:disc">Text Analytics </li></ul><ul id="d8ae3f49-8d4d-41fa-a0d8-86bb2a55ee57" class="bulleted-list"><li style="list-style-type:disc">Sentiment Analysis </li></ul><ul id="3cf83d8f-4dba-4945-956e-d2f0494631e5" class="bulleted-list"><li style="list-style-type:disc"> Sentiment Scoring</li></ul><ul id="f15260ca-64f8-4397-a089-5e8a1a62ee27" class="bulleted-list"><li style="list-style-type:disc">Financial Market News Analysis</li></ul><ul id="265a8e89-5c95-4a42-af19-1b0c078083a5" class="bulleted-list"><li style="list-style-type:disc">Financial Market mood prediction</li></ul><p id="4a4c513e-e3a4-4752-936c-cec4dbbeeb42" class="">
+</p></details></li></ul><p id="160507b7-66c9-433d-9462-fb07b45521bf" class="">
+</p><ul id="353b4ee2-1a99-4d22-8d0c-68ea041e4c85" class="toggle"><li><details open=""><summary>Web Application Development in Python   (Optional Module)- (25 Hours)</summary><p id="f18d55d2-047d-4aea-b476-962cc781fe6b" class="">Creating  a  custom made Live Trading Dashboard Web Application</p><p id="388f84d6-166a-4caa-97c2-2d4f38922a30" class="">
+</p></details></li></ul><p id="292649f9-60fe-4d49-afdc-20f9ea6ab642" class="">
+</p><ul id="b4c67c6b-5d6d-4b4f-91e8-93379b5db7cb" class="toggle"><li><details open=""><summary>Job-ready preparation stack (Optional Module) (20 hours)</summary><p id="418fd891-ecd5-4001-a243-a0b45c650e38" class="">These technologies are essential when working in a Production Environment in any Company</p><ul id="a4a0e8c1-c426-47a3-91f0-4d50cc7952f7" class="bulleted-list"><li style="list-style-type:disc"> Git &amp; Version Control</li></ul><ul id="498a2528-6dc3-4be9-9323-e4e22a84752d" class="bulleted-list"><li style="list-style-type:disc">Docker </li></ul><ul id="c6484e03-4ba3-4ea6-8b78-493463e3a7ab" class="bulleted-list"><li style="list-style-type:disc">Basic Bash Scripting</li></ul><ul id="177d733d-6f6a-4433-83ad-482728f41712" class="bulleted-list"><li style="list-style-type:disc">CI/CD workflows</li></ul><ul id="1e2934a4-4ba2-430a-ba2a-0652d71a6bef" class="bulleted-list"><li style="list-style-type:disc">Application Deployment</li></ul></details></li></ul><p id="2929855c-a479-4c44-95d7-b17d591ae955" class="">
+</p><p id="f743cdf0-8957-498c-8134-f0fa5bc9d7f8" class="">--------------------------------------------------------------------------------------------------------------————————————————————————————————————————————————————————————————————————————————————————</p><p id="3d607b0d-a4c4-4fd2-b6bb-bc21b68bfb6e" class=""><em>END</em></p><p id="ff850c88-42ff-423e-87b8-1704344379ec" class="">
+</p></div></article></body></html>
